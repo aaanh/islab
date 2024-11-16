@@ -87,7 +87,7 @@ body {
   }
 
   h1 {
-    @apply text-4xl;
+    @apply text-4xl my-4;
   }
 
   h2 {
@@ -98,15 +98,27 @@ body {
     @apply text-lg;
   }
 
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply my-2;
+  }
+
   .portable-text {
     @apply mb-4;
   }
 
-  .portable-text h1 {
-    @apply text-3xl my-2 font-bold;
-  }
-
   .portable-text p {
     @apply my-1;
+  }
+
+  .portable-text ul {
+    @apply list-disc ml-4;
+  }
+
+  .portable-text a {
+    @apply text-primary underline underline-offset-2;
   }
 }

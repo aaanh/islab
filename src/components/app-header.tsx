@@ -1,30 +1,18 @@
-import { Separator } from "@radix-ui/react-separator";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-} from "./ui/breadcrumb";
 import { SidebarTrigger } from "./ui/sidebar";
+import Link from "next/link";
+import { PencilIcon } from "lucide-react";
 
 export default function AppHeader() {
   return (
-    <header className="flex items-center gap-2 px-4 border-b h-16 shrink-0">
+    <header className="flex justify-between items-center gap-2 px-4 border-b h-16 shrink-0">
       <SidebarTrigger className="-ml-1" />
-      <Separator orientation="vertical" className="mr-2 h-4" />
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem className="md:block hidden">
-            <BreadcrumbLink href="#">Building Your Application</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator className="md:block hidden" />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <Link
+        className="flex items-center gap-2 hover:bg-primary/10 p-2 rounded-lg transition-all ease-in-out"
+        href="/studio"
+      >
+        <PencilIcon size={14} />
+        <span>Content Studio</span>
+      </Link>
     </header>
   );
 }
