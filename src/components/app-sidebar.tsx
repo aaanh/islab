@@ -16,6 +16,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { getCategoriesAction } from "@/app/(home)/actions";
+import Link from "next/link";
 
 export async function AppSidebar({
   ...props
@@ -36,9 +37,9 @@ export async function AppSidebar({
               <React.Fragment key={category.slug}>
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
-                    <a href={`/categories/${category.slug}`}>
+                    <Link href={`/categories/${category.slug}`}>
                       {category.title}
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 {(idx === 1 || idx === 5) && <SidebarSeparator />}
