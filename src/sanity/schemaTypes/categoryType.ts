@@ -12,7 +12,7 @@ export const categoryType = defineType({
       name: "sidebar_order",
       title: "Sidebar Order",
       type: "number",
-      initialValue: async (context) => {
+      initialValue: async () => {
         const maxOrder = await getHighestCategoryOrder();
 
         return (maxOrder || 0) + 1;
