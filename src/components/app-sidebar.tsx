@@ -27,7 +27,6 @@ export async function AppSidebar({
     <Sidebar {...props}>
       <SidebarHeader>
         <AppLogo />
-        <SearchForm />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup></SidebarGroup>

@@ -30,7 +30,7 @@ export default async function Page({
             <br />
             {post.body_francais && (
               <>
-                <h2>Version francais</h2>
+                <h2>Version français</h2>
                 <PortableTextRender blocks={post.body_francais} />
               </>
             )}
