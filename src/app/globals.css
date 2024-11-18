@@ -87,6 +87,6 @@ body {
   }
 
   .portable-text {
-    @apply mb-4 prose;
+    @apply mb-4 prose max-w-none;
   }
 }
