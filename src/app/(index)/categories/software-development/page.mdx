@@ -1,0 +1,250 @@
+# Getting started
+
+## Introductory knowledge
+
+If you already know what Git, Python, Tensorflow, and machine learning are, you can skip to the [Onboarding](#onboarding) section.
+
+### Git and GitHub
+
+-   The Inertial Sensing Lab project hosts all of its code base on [GitHub](https://github.com), a hosting service that is geared towards software development.
+
+-   The main tool that is used to interact with our code base on GitHub is called [Git](https://git-scm.org), an application developed by Linus Torvalds as a way to manage source codes.
+
+-   Currently our project is **Invite Only**. To access our code base, prospective users need to register an account on [GitHub](https://github.com/join), and request access from the project director: [Chris Larnder](mailto:chris.larnder@johnabbott.qc.ca).
+
+### Python
+
+-   [Python](https://python.org) is an interpretive programming language that we use for developing functionalities that aid us in our researches. **Project is written in Python v3.6.x  up to v3.7.x**
+
+-   [Tkinter](https://docs.python.org/3/library/tkinter.html) is a framework for building graphical user interfaces. In our case, it is mostly used for file input and output dialogs platform-agnostically.
+
+### Tensorflow and friends
+
+-   [Tensorflow](https://tensorflow.org) is a widely-used machine learning framework originally developed at Google by Andrew Ng. It could be used in conjunction with many programming languages, specifically Python, to train predictive models. **We are using Tensorflow major version v1.x.x**
+
+-   [Matplotlib](https://matplotlib.org) is a dynamic plotting graphing library for Python. We use it, of course, for visualization and aid the analysis of our ML model results.
+
+-   [Numpy](https://numpy.org) is a Python library that is used for implementations of linear algebra concepts such as support for vectors, matrices, and **N**-dimensional arrays. In addition, the library supports high-level math operations.
+
+### [PyCharm Integrated Development Environment](https://jet)
+
+-   It is highly recommended for beginners to use PyCharm IDE by JetBrains to run our codes, as it would not require much setting up.
+
+## Installation
+
+### Git
+
+### Platforms
+
+#### Windows
+
+-   Download git here https://git-scm.org/download/win
+
+#### macOS
+
+-   Git is included in macOS\'s xcode command line tools.
+-   Open up `Terminal` by opening up Spotlight search with <kbd>⌘Command</kbd> + <kbd>Space</kbd> and search for `Terminal`. Then, hit <kbd>Enter</kbd>
+-   Type `git` in the `Terminal` and hit <kbd>Enter</kbd>.
+-   If xcode command line tools is not installed, macOS will prompt you for download and installation. It will take a while to finish.
+-   After xcode command line tools is installed, you can relaunch `Terminal` and the `git` command can then be used.
+
+
+### Python
+
+### Platforms
+
+#### Windows
+
+-   Download and install Python from https://python.org
+-   Our tried and tested Python version is `v3.7.x`. Later versions might work as well, but it is safest to go with `v3.7.x` to avoid unnecessary deprecations and bugs.
+
+1. Go to https://www.python.org/downloads/
+2. Scroll down to **Looking for a specific release?** section
+3. Find any subversion of Python `v3.7.x`
+4. Click on **Download** on the 3^rd^ column
+
+
+5. Choose the correct `.exe` installer file on the next page
+
+**x86 for 32-bit Windows version and x64 for 64-bit Windows version**
+
+Most likely you are running a 64-bit version of Windows if your computer was bought no earlier than 10 years ago.
+
+
+-   Administrative privilege would be needed for a complete installation of Python
+-   During the installation, look out for the option to add "Python to PATH environment variables" and the option to "remove the path length limit" and check them all.
+
+-   After the installing, you can open up Command Prompt and run the follow command to check if it's installed correctly.
+
+Input: (`$` symbol indicates shell by standard syntax, not needed when typing in commands)
+
+```
+$ python
+```
+
+Example output:
+
+```
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+#### macOS
+
+-   Python `v3.x.x` should come with xcode command line tools on macOS
+-   Open up `Terminal` and run this command to check
+
+```
+$ python3
+```
+
+Example output:
+
+```
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+-   If Python3 is not found, you could down and install it from https://python.org/downloads/
+-   It is recommended to install Python `v3.6.x`, or `v3.7.x`, or `v3.8.x`
+
+### PyCharm IDE
+
+To run our developed tests with PyCharm IDE, there are some initial setups needed to be done first for PyCharm to work correctly with the project code base.
+
+#### Opening the project folder and install requirements
+
+1. Open up PyCharm IDE for the first time
+2. On the title bar, go to `File` &rightarrow; `Open... ` this will open up a file dialog
+3. Point to the root directory of the project like below to open
+
+4. Python would then run some background tasks to scan the whole folder
+5. After it is done, you need to select the correct Python Interpreter
+5. On the bottom right corner of PyCharm, click on `<No Interpreter>` to select
+
+6. Select Python 3.7 as the project interpreter and save the progress
+7. Click on the same option again and select `Interpreter Settings`
+8. The pop up dialog would show the packages installed for your Python interpreter
+9. Click on the `+` sign to add the required Python libraries
+
+10. On the left panel, search for `Tensorflow` and click on `Tensorflow`
+11. On the right panel, tick `Specify version` and select Tensorflow 1.15.0 from the dropdown
+12. Click `Install Package` button afterwards
+
+13. Again on the left panel, search for these, select them and hit Install Packages: `matplotlib`, `numpy`.
+
+#### Setting the source folder for modules scoping
+
+1. Go to `Interpreter Settings`
+2. On the left panel, select `Project Structure` option
+3. On the right panel, right-click on the `src` folder and mark it as Sources
+
+
+## Onboarding
+
+### Getting the code base with git
+
+-   Fire up a Terminal or Command Prompt and clone the repository!
+-   Before that, it is recommended that you clone to a specific folder to remember where it is cloned to.
+
+```bash
+$ git clone https://github.com/larnder/2019_06_AccelerationCamp.git islab
+```
+
+-   Since it is a private repository, there will be a browser pop-up for you to sign in to the appropriate GitHub account with access to the repository.
+-   On Windows, by default, the Command Prompt is launched in `C:\Users\your_user_folder\`, so the cloned repository will be at `C:\Users\your_user_folder\islab`.
+-   On macOS, by default, the cloned repository will be at `/Users/your_user_folder/islab`
+
+### Installing the required Python libraries
+
+-   Open a Terminal or Command Prompt window at the clone repo's root directory
+-   Alternatively, use `cd` (change directory) command to point to the repo's file path on your computer
+
+Example of `cd` usage:
+
+### Platforms
+
+#### Windows
+
+```bash
+$ cd %USERPROFILE%\islab
+```
+
+#### macOS
+
+```bash
+$ cd ~/islab
+```
+
+or
+
+```zsh
+$ cd $HOME/islab
+```
+
+-   Run Python's `pip` module to install the dependencies:
+
+```bash
+$ python -m pip install -r requirements.txt
+```
+
+or
+
+```
+$ python3 -m pip install -r requirements.txt
+```
+
+### Viewing markdown files
+
+-   PyCharm should be able to render preview for markdown `.md` files with its Markdown plug-in.
+
+### Running an example from our code base
+
+#### Explaining repository structure
+
+The project code base has 2 important folders: `data`, `src`
+
+1. The `data` folder:
+- It contains all the experimental data up-to-date
+- Developed test modules are based on these data
+
+2. The `src` folder:
+- Contains 2 important folders: `modules`, `tests`
+- `modules` folder has lower-level tools to load data, draw graphs, do mathematical transformations, and etc. These are the functions with which tests are built.
+- `test_units` folder has debugging and error-catching tools for development
+- The python scripts in `tests` folder is what you will be running as examples
+
+#### Example
+
+- After finishing setting up PyCharm, you could go ahead and run any scripts in the `tests` folder to see the results.
+- If it doesn't work right out of the box, please go over the [PyCharm IDE section](#pycharm-ide) under [Installation](#installation) again.
+- If it still doesn't work, please do the initial steps under Troubleshooting then contact this tutorial author at `hoanganhdev@icloud.com` with relative information for diagnosis and resolution.
+
+
+# Troubleshooting
+
+This section covers common bugs in the process of running the tools developed in this project. Please refer to this first before resolving to contacting the project maintainers.
+
+Before starting the troubleshooting process, please gather some information pertaining to your computer system by using these following commands:
+
+## Windows
+
+### Development Environment Related Issues
+
+1. <kbd>Windows Key</kbd> + <kbd>R</kbd>
+2. Type "dxdiag" into dialog box
+3. Press Enter
+
+&rightarrow; This will open up DirectX dialog to view your PC's hardware specifications which include CPU, GPU, display monitor manifest, RAM, etc. that would help to narrow down the cause of the errors.
+
+## macOS
+
+N/A
+
+## Linux
+
+N/A

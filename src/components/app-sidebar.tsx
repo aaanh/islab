@@ -15,7 +15,7 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { getCategoriesAction } from "@/app/(home)/actions";
+import { getCategoriesAction } from "@/app/(index)/actions";
 import Link from "next/link";
 
 export async function AppSidebar({
