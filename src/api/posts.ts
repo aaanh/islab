@@ -11,10 +11,37 @@ export async function getPosts() {
       },
       "categories": categories[]->{
         title
+      },
+      "subposts": subposts[]->{
+        title,
+        slug
       }
     }`);
 
   return posts;
+}
+
+export async function getPostBySlug(slug: string) {
+  const post =
+    await client.fetch(`*[_type == "post" && slug.current == "${slug}"] {
+      title,
+      slug,
+      body_english,
+      body_francais,
+      "author": author->{
+        name, 
+        bio
+      },
+      "categories": categories[]->{
+        title
+      },
+      "subposts": subposts[]->{
+        title,
+        slug
+      }
+    }`);
+
+  return post[0];
 }
 
 export async function getPostsByCategory(slug: string) {
@@ -30,6 +57,10 @@ export async function getPostsByCategory(slug: string) {
       },
       "categories": categories[]->{
         title
+      },
+      "subposts": subposts[]->{
+        title,
+        slug
       }
     }`
   );

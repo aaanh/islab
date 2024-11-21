@@ -54,6 +54,11 @@ export const postType = defineType({
       name: "body_francais",
       type: "blockContent",
     }),
+    defineField({
+      name: "subposts",
+      type: "array",
+      of: [defineArrayMember({ type: "reference", to: { type: "post" } })],
+    }),
   ],
   preview: {
     select: {

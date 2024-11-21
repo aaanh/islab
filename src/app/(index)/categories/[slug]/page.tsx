@@ -14,7 +14,26 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-  const posts = await getPostsByCategoryAction(slug);
+  const post = (await getPostsByCategoryAction(slug))[0];
+  let subposts = [];
+  if (post.subposts) {
+    subposts = post.subposts;
+    console.log(subposts);
+  }
+
+  if (!post) {
+    return (
+      <div className="mt-8 p-4">
+        <h1 className="font-bold text-4xl underline underline-offset-4 capitalize decoration-1">
+          {slug}
+        </h1>
+        <br />
+        <main>
+          <h1>No content is found</h1>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-8 p-4">
@@ -23,21 +42,20 @@ export default async function Page({
       </h1>
       <br />
       <main>
-        {posts.map((post: PostType) => (
-          <Fragment key={post.slug}>
-            {post.body_francais && (
-              <h2 className="font-bold text-4xl">English version</h2>
-            )}
-            <PortableTextRender blocks={post.body_english} />
-            <br />
-            {post.body_francais && (
-              <>
-                <h2 className="font-bold text-4xl">Version français</h2>
-                <PortableTextRender blocks={post.body_francais} />
-              </>
-            )}
-          </Fragment>
-        ))}
+        Subposts: {JSON.stringify(subposts)}
+        <Fragment key={post.slug}>
+          {post.body_francais && (
+            <h2 className="font-bold text-4xl">English version</h2>
+          )}
+          <PortableTextRender blocks={post.body_english} />
+          <br />
+          {post.body_francais && (
+            <>
+              <h2 className="font-bold text-4xl">Version français</h2>
+              <PortableTextRender blocks={post.body_francais} />
+            </>
+          )}
+        </Fragment>
       </main>
     </div>
   );
