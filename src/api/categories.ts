@@ -1,34 +1,13 @@
+import { Category } from "@/sanity.types";
 import { client } from "@/sanity/lib/client";
-
-interface Category {
-  sidebar_order: number;
-  title: string;
-  slug: string;
-}
-
-interface SanityCategory {
-  sidebar_order: number;
-  title: string;
-  slug: {
-    current: string;
-  };
-}
 
 export async function getCategories() {
   const res = await client.fetch(`*[_type == "category"]`);
 
-  const categories: Category[] = res.map(
-    (category: SanityCategory): Category => {
-      return {
-        sidebar_order: category.sidebar_order,
-        title: category.title,
-        slug: category.slug.current,
-      };
-    }
-  );
+  const categories: Category[] = res.map((category: Category) => category);
 
   // Order by field sidebar_order
-  categories.sort((a, b) => a.sidebar_order - b.sidebar_order);
+  categories.sort((a, b) => (a.sidebar_order ?? 0) - (b.sidebar_order ?? 0));
 
   return categories;
 }

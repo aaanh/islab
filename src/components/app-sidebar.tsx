@@ -33,10 +33,10 @@ export async function AppSidebar({
         <SidebarGroupContent>
           <SidebarMenu>
             {categories.map((category, idx) => (
-              <React.Fragment key={category.slug}>
+              <React.Fragment key={category.slug?.current}>
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
-                    <Link href={`/categories/${category.slug}`}>
+                    <Link href={`/categories/${category.slug?.current}`}>
                       {category.title}
                     </Link>
                   </SidebarMenuButton>
