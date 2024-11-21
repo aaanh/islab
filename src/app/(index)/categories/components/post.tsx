@@ -4,14 +4,19 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 export default function PostRender({ post }: { post: Post }) {
-  const postSlug = post.slug?.current;
+  if (!post) {
+    return (
+      <div className="mt-8 p-4">
+        <h1 className="font-bold text-4xl underline underline-offset-4 capitalize decoration-1">
+          Post not found
+        </h1>
+      </div>
+    );
+  }
 
   return (
-    <div className="mt-8 p-4">
-      <h1 className="font-bold text-4xl underline underline-offset-4 capitalize decoration-1">
-        {postSlug}
-      </h1>
-      <br />
+    <div className="mt-8 p-4 portable-text">
+      <h1 className="capitalize">{post.title}</h1>
       <main>
         <ul>
           {post.subposts &&
@@ -25,19 +30,16 @@ export default function PostRender({ post }: { post: Post }) {
               </li>
             ))}
         </ul>
-        <Fragment>
-          {post.body_francais && (
-            <h2 className="font-bold text-4xl">English version</h2>
-          )}
-          <PortableTextRender blocks={post.body_english} />
-          <br />
-          {post.body_francais && (
-            <>
-              <h2 className="font-bold text-4xl">Version français</h2>
-              <PortableTextRender blocks={post.body_francais} />
-            </>
-          )}
-        </Fragment>
+
+        {post.body_francais && <h2>English version</h2>}
+        <PortableTextRender blocks={post.body_english} />
+        <br />
+        {post.body_francais && (
+          <>
+            <h2>Version français</h2>
+            <PortableTextRender blocks={post.body_francais} />
+          </>
+        )}
       </main>
     </div>
   );

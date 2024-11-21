@@ -43,7 +43,7 @@ const components = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function PortableTextRender({ blocks }: { blocks: any }) {
   return (
-    <section className="portable-text">
+    <section>
       <PortableText value={blocks} components={components} />
     </section>
   );

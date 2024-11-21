@@ -87,6 +87,6 @@ body {
   }
 
   .portable-text {
-    @apply mb-4 prose max-w-none;
+    @apply mb-4 prose max-w-none prose-headings:text-primary prose-headings:border-b prose-a:underline prose-a:text-muted-foreground hover:prose-a:text-primary;
   }
 }
