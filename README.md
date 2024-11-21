@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Inertial Sensing Lab Full-stack Website
 
-## Getting Started
+## How to run locally
 
-First, run the development server:
+### Prerequisite tools
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Any code editor
+- Git
+- Node (>= 20.x) and npm
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Steps
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Clone this repository
+- Change directory into the repository root
+- Run `npm install`
+- Create `.env.local` and add these environment variables
+  ```
+  # Created by Vercel CLI
+  NEXT_PUBLIC_SANITY_DATASET="production"
+  NEXT_PUBLIC_SANITY_PROJECT_ID="e8u26hts"
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  ```
+- Run `npm run dev`
 
-## Learn More
+## How to develop
 
-To learn more about Next.js, take a look at the following resources:
+- Create a new feature branch, e.g. `[your-name]/[some-feature-or-fix]`
+- Make changes
+- Add, commit, push
+- Create new pull request from feature branch to `staging` branch
+- Add @aaanh as reviewer
+- If feature branch is diverged from `staging`, which prevents merging from PR, do `git checkout main; git pull; git checkout [your-feature-branch]; git rebase main`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How the site is deployed
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+There are 2 live sites <https://islab.ca> and <https://staging.islab.ca>, each corresponding to `main` (production) and `staging` branch respectively.
 
-## Deploy on Vercel
+Once new commits are pushed to any of these branches, Vercel will automatically trigger build and deploy to the said URLs.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How to edit content
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Most site contents are editable through the Sanity CMS Studio, which is accessible at <https://islab.ca/studio> or in local development environment, <http://localhost:3000/studio>.
+
+### Documents (native concept)
+
+Any content stored in Sanity CMS database are called documents. A document can fluidly take any shape or form depending on how it is defined in the `schemaType`.
+
+A document must have a `slug` which is used for querying from the dabatase. Think of it as a unique ID.
+
+### Categories
+
+Categories are rendered in the application sidebar, acting as the entrypoint to the posts.
+
+### Posts
+
+A post is the content unit on the site. These are rendered at `/categories/post-slug/subpost-slug`.
+
+A post may have children posts, called `subposts`, that are rendered at `/categories/post-slug/subpost-slug`
+
+### Authors
+
+Authors are rendered on the `/categories/people` page.
+
+A post may or may not have an `author` referenced.
