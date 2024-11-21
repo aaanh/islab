@@ -17,6 +17,7 @@ export default async function Page({
     let post = null;
     switch (slug.length) {
       case 1:
+        if (slug[0] === "introduction") redirect("/")
         post = await getPostBySlug(slug[0]);
         return <PostRender post={post} />;
       case 2:

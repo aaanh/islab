@@ -35,10 +35,10 @@ export default function PostRender({ post }: { post: Post }) {
         <PortableTextRender blocks={post.body_english} />
         <br />
         {post.body_francais && (
-          <>
+          <Fragment>
             <h2>Version français</h2>
             <PortableTextRender blocks={post.body_francais} />
-          </>
+          </Fragment>
         )}
       </main>
     </div>
