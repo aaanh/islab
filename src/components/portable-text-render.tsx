@@ -3,7 +3,7 @@ import urlBuilder from "@sanity/image-url";
 import { getImageDimensions } from "@sanity/asset-utils";
 import { dataset, projectId } from "@/sanity/env";
 
-const ImageComponent = ({
+export const ImageComponent = ({
   value,
   isInline,
 }: {

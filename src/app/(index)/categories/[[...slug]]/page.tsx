@@ -17,7 +17,7 @@ export default async function Page({
     let post = null;
     switch (slug.length) {
       case 1:
-        if (slug[0] === "introduction") redirect("/")
+        if (slug[0] === "introduction") redirect("/");
         post = await getPostBySlug(slug[0]);
         return <PostRender post={post} />;
       case 2:
@@ -27,7 +27,7 @@ export default async function Page({
         const categories = await getCategoriesAction();
 
         return (
-          <div className="mt-8 p-4 prose">
+          <div className="mt-4 p-4 prose">
             <h1>Categories</h1>
             <ul>
               {categories.map((category: Category, idx: number) => (

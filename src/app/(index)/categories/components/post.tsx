@@ -1,12 +1,15 @@
-import PortableTextRender from "@/components/portable-text-render";
+import PortableTextRender, {
+  ImageComponent,
+} from "@/components/portable-text-render";
 import { type Post } from "@/sanity.types";
+import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 
 export default function PostRender({ post }: { post: Post }) {
   if (!post) {
     return (
-      <div className="mt-8 p-4">
+      <div className="mt-2 px-4">
         <h1 className="font-bold text-4xl underline underline-offset-4 capitalize decoration-1">
           Post not found
         </h1>
@@ -15,21 +18,33 @@ export default function PostRender({ post }: { post: Post }) {
   }
 
   return (
-    <div className="mt-8 p-4 portable-text">
+    <div className="mt-2 px-4 portable-text">
       <h1 className="capitalize">{post.title}</h1>
       <main>
-        <ul>
+        <div className="gap-4 grid grid-cols-1 lg:grid-cols-3">
           {post.subposts &&
             post.subposts?.map((subpost: any, idx: number) => (
-              <li key={subpost.title + "-" + idx}>
+              <div
+                className="flex flex-col gap-4 border-primary p-2 border rounded-lg text-2xl"
+                key={subpost.title + "-" + idx}
+              >
                 <Link
+                  className="bg-primary p-2 rounded-lg text-background hover:text-background/90"
                   href={`/categories/${post.slug?.current}/${subpost.slug.current}`}
                 >
                   {subpost.title}
                 </Link>
-              </li>
+                {subpost.mainImage && (
+                  <div className="bg-primary/30 p-2 rounded-md">
+                    <ImageComponent
+                      value={subpost.mainImage}
+                      isInline={false}
+                    />
+                  </div>
+                )}
+              </div>
             ))}
-        </ul>
+        </div>
 
         {post.body_francais && <h2>English version</h2>}
         <PortableTextRender blocks={post.body_english} />
