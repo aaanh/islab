@@ -35,7 +35,6 @@ export default function RootLayout({
           <AppSidebar />
           <SidebarInset>
             <AppHeader />
-            <div className="mb-12"></div>
             {children}
           </SidebarInset>
         </SidebarProvider>

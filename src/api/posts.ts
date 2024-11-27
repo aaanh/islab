@@ -26,6 +26,7 @@ export async function getPostBySlug(slug: string) {
     await client.fetch(`*[_type == "post" && slug.current == "${slug}"] {
       title,
       slug,
+      mainImage,
       body_english,
       body_francais,
       "author": author->{
@@ -37,7 +38,8 @@ export async function getPostBySlug(slug: string) {
       },
       "subposts": subposts[]->{
         title,
-        slug
+        slug,
+        mainImage
       }
     }`);
 
@@ -49,6 +51,7 @@ export async function getPostsByCategory(slug: string) {
     `*[_type == "post" && "${slug}" in categories[]->slug.current] {
       title,
       slug,
+      mainImage,
       body_english,
       body_francais,
       "author": author->{
@@ -60,7 +63,8 @@ export async function getPostsByCategory(slug: string) {
       },
       "subposts": subposts[]->{
         title,
-        slug
+        slug,
+        mainImage
       }
     }`
   );
