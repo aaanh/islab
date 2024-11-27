@@ -21,11 +21,21 @@ export default function PostRender({ post }: { post: Post }) {
     <div className="mt-2 px-4 portable-text">
       <h1 className="capitalize">{post.title}</h1>
       <main>
-        <div className="gap-4 grid grid-cols-1 lg:grid-cols-3">
-          {post.subposts &&
+        {post.body_francais && <h2>English version</h2>}
+        <PortableTextRender blocks={post.body_english} />
+        <br />
+        {post.body_francais && (
+          <Fragment>
+            <h2>Version français</h2>
+            <PortableTextRender blocks={post.body_francais} />
+          </Fragment>
+        )}
+        <h2>Related contents</h2>
+        <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 mb-8">
+          {post.subposts ? (
             post.subposts?.map((subpost: any, idx: number) => (
               <div
-                className="flex flex-col gap-4 border-primary p-2 border rounded-lg text-2xl"
+                className="flex flex-col gap-4 border-primary p-2 border rounded-lg text-xl"
                 key={subpost.title + "-" + idx}
               >
                 <Link
@@ -43,18 +53,11 @@ export default function PostRender({ post }: { post: Post }) {
                   </div>
                 )}
               </div>
-            ))}
+            ))
+          ) : (
+            <p>There are no related contents</p>
+          )}
         </div>
-
-        {post.body_francais && <h2>English version</h2>}
-        <PortableTextRender blocks={post.body_english} />
-        <br />
-        {post.body_francais && (
-          <Fragment>
-            <h2>Version français</h2>
-            <PortableTextRender blocks={post.body_francais} />
-          </Fragment>
-        )}
       </main>
     </div>
   );

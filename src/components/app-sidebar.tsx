@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 
 import { AppLogo } from "@/components/app-logo";
@@ -17,11 +19,19 @@ import {
 import { getCategoriesAction } from "@/app/(index)/actions";
 import Link from "next/link";
 import { ZapIcon } from "lucide-react";
+import { useEffect } from "react";
+import { Category } from "@/sanity.types";
 
-export async function AppSidebar({
-  ...props
-}: React.ComponentProps<typeof Sidebar>) {
-  const categories = await getCategoriesAction();
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [categories, setCategories] = React.useState<Category[]>([]);
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const categories = await getCategoriesAction();
+      setCategories(categories);
+    }
+    fetchCategories();
+  });
 
   return (
     <Sidebar {...props} className="flex flex-col m-2 border-none h-[97.5vh]">

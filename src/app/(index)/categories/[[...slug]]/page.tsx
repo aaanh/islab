@@ -1,4 +1,3 @@
-import { getPostsByCategoryAction } from "../actions";
 import { getCategoriesAction } from "../../actions";
 import { Category } from "@/sanity.types";
 import PostRender from "../components/post";
