@@ -89,4 +89,13 @@ body {
   .portable-text {
     @apply mb-4 prose max-w-none prose-headings:text-primary prose-headings:border-b prose-a:underline prose-a:text-muted-foreground hover:prose-a:text-primary prose-blockquote:break-all;
   }
+
+  .portable-text blockquote {
+    @apply border-l-4 border-primary border pl-1 pr-2 flex items-center relative bg-primary/10;
+  }
+
+  .portable-text blockquote::before {
+    content: "“"; /* Quote mark */
+    @apply bg-primary text-background text-4xl p-2 pr-4 mr-2; /* Tailwind styles */
+  }
 }
