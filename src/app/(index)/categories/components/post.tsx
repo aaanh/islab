@@ -1,12 +1,16 @@
+"use client";
+
 import PortableTextRender, {
   ImageComponent,
 } from "@/components/portable-text-render";
 import { type Post } from "@/sanity.types";
-import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+import { LanguageSwitcher, useLanguage } from "./language-switcher";
 
 export default function PostRender({ post }: { post: Post }) {
+  const language = useLanguage();
+
   if (!post) {
     return (
       <div className="mt-2 px-4">
@@ -21,14 +25,19 @@ export default function PostRender({ post }: { post: Post }) {
     <div className="mt-2 px-4 portable-text">
       <h1 className="capitalize">{post.title}</h1>
       <main>
-        {post.body_francais && <h2>English version</h2>}
-        <PortableTextRender blocks={post.body_english} />
-        <br />
-        {post.body_francais && (
+        <LanguageSwitcher />
+        {language.state === "en" ? (
+          <Fragment>
+            <h2>English version</h2>
+            <PortableTextRender blocks={post.body_english} />
+          </Fragment>
+        ) : post.body_francais ? (
           <Fragment>
             <h2>Version français</h2>
             <PortableTextRender blocks={post.body_francais} />
           </Fragment>
+        ) : (
+          <p>{`Version français n'est pas disponsible.`}</p>
         )}
         <h2>Related contents</h2>
         <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 mb-8">
