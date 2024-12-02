@@ -41,11 +41,13 @@ export default async function PeoplePage() {
   });
 
   return (
-    <div className="p-4 mt-8">
-      <h1 className="text-2xl text-background font-bold bg-primary p-2 rounded-lg">People</h1>
+    <div className="px-4 p-2">
+      <h1 className="bg-primary p-2 rounded-lg font-bold text-2xl text-background">
+        People
+      </h1>
       {peopleCategories.map((category: PeopleCategoryType) => (
         <div key={category.slug.current}>
-          <h2 className="my-4 font-bold border-b">{category.title}</h2>
+          <h2 className="my-4 border-b font-bold">{category.title}</h2>
           <div className="gap-8 grid grid-cols-1 lg:grid-cols-2">
             {people
               .filter(

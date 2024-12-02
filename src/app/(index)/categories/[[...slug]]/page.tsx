@@ -1,10 +1,8 @@
 import { getCategoriesAction } from "../../actions";
 import { Category } from "@/sanity.types";
-import PostRender from "../components/post";
 import { getPostBySlug } from "@/api/posts";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { LanguageProvider } from "../components/language-switcher";
 import PostWithLanguage from "../components/post-with-language";
 
 export default async function Page({
