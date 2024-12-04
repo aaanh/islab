@@ -33,6 +33,18 @@ export const ImageComponent = ({
 };
 
 const components = {
+  block: {
+    h1: ({ children }: any) => {
+      const text = children[0];
+      const id = text.toLowerCase().replace(/\s+/g, "-");
+      return <h1 id={id}>{children}</h1>;
+    },
+    h2: ({ children }: any) => {
+      const text = children[0];
+      const id = text.toLowerCase().replace(/\s+/g, "-");
+      return <h2 id={id}>{children}</h2>;
+    },
+  },
   types: {
     image: ({ value, isInline }: { value: any; isInline: boolean }) => {
       return <ImageComponent value={value} isInline={isInline} />;
