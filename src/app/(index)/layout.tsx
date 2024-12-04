@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import AppHeader from "@/components/app-header";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,6 +38,7 @@ export default function RootLayout({
             <AppHeader />
             {children}
           </SidebarInset>
+          <ScrollToTop />
         </SidebarProvider>
       </body>
     </html>

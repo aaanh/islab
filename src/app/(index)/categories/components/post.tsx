@@ -72,7 +72,7 @@ export default function PostRender({ post }: { post: Post }) {
         </div>
         {/* Add Table of Contents */}
         {tableOfContents.length > 0 && (
-          <nav className="mt-4 px-4 border rounded-lg">
+          <nav className="border-primary mt-4 px-4 border rounded-lg w-fit">
             <h2>
               {language.state === "en"
                 ? "Table of Contents"
