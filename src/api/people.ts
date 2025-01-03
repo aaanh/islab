@@ -28,7 +28,7 @@ export interface PeopleCategoryType {
   };
 }
 
-export async function getPeople(): Promise<PeopleType[] | null> {
+export async function getPeople(): Promise<PeopleType[]> {
   return cache(async () => {
     const res = await client.fetch(`*[_type == "author"] {
         name,
