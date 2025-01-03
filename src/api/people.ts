@@ -1,4 +1,5 @@
 import { client } from "@/sanity/lib/client";
+import { cache } from "react";
 
 export interface PeopleType {
   name: string;
@@ -27,41 +28,45 @@ export interface PeopleCategoryType {
   };
 }
 
-export async function getPeople() {
-  const res = await client.fetch(`*[_type == "author"] {
-      name,
-      slug,
-      bio,
-      "author_category": author_category[]->{
-        title,
-        slug
-      },
-      affiliation,
-      extern_links,
-      "image": image.asset->url
-    }`);
+export async function getPeople(): Promise<PeopleType[] | null> {
+  return cache(async () => {
+    const res = await client.fetch(`*[_type == "author"] {
+        name,
+        slug,
+        bio,
+        "author_category": author_category[]->{
+          title,
+          slug
+        },
+        affiliation,
+        extern_links,
+        "image": image.asset->url
+      }`);
 
-  const people: PeopleType[] = res.map((person: PeopleType): PeopleType => {
-    return {
-      name: person.name,
-      slug: person.slug,
-      bio: person.bio,
-      author_category: person.author_category,
-      affiliation: person.affiliation,
-      extern_links: person.extern_links,
-      image: person.image,
-    };
-  });
+    const people: PeopleType[] = res.map((person: PeopleType): PeopleType => {
+      return {
+        name: person.name,
+        slug: person.slug,
+        bio: person.bio,
+        author_category: person.author_category,
+        affiliation: person.affiliation,
+        extern_links: person.extern_links,
+        image: person.image,
+      };
+    });
 
-  return people;
+    return people;
+  })();
 }
 
-export async function getPeopleCategories() {
-  const categories: PeopleCategoryType[] =
-    await client.fetch(`*[_type == "author_category"] {
+export async function getPeopleCategories(): Promise<PeopleCategoryType[]> {
+  return (async () => {
+    const categories: PeopleCategoryType[] =
+      await client.fetch(`*[_type == "author_category"] {
       title,
       slug
     }`);
 
-  return categories;
+    return categories;
+  })();
 }
