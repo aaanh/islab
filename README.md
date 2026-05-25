@@ -1,64 +1,159 @@
-# Inertial Sensing Lab Full-stack Website
+# Turborepo starter
 
-## How to run locally
+This Turborepo starter is maintained by the Turborepo core team.
 
-### Prerequisite tools
+## Using this example
 
-- Any code editor
-- Git
-- Node (>= 20.x) and npm
+Run the following command:
 
-### Steps
+```sh
+npx create-turbo@latest
+```
 
-- Clone this repository
-- Change directory into the repository root
-- Run `npm install`
-- Create `.env.local` and add these environment variables
-  ```
-  # Created by Vercel CLI
-  NEXT_PUBLIC_SANITY_DATASET="production"
-  NEXT_PUBLIC_SANITY_PROJECT_ID="REDACTED AND TO BE SQUASHED. I MEAN, THE CONTENT IS PUBLIC ANYWAY BUT I'LL JUST STILL REDACT IT"
+## What's inside?
 
-  ```
-- Run `npm run dev`
+This Turborepo includes the following packages/apps:
 
-## How to develop
+### Apps and Packages
 
-- Create a new feature branch, e.g. `[your-name]/[some-feature-or-fix]`
-- Make changes
-- Add, commit, push
-- Create new pull request from feature branch to `staging` branch
-- Add @aaanh as reviewer
-- If feature branch is diverged from `staging`, which prevents merging from PR, do `git checkout main; git pull; git checkout [your-feature-branch]; git rebase main`
+- `docs`: a [Next.js](https://nextjs.org/) app
+- `web`: another [Next.js](https://nextjs.org/) app
+- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
-## How the site is deployed
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-There are 2 live sites <https://islab.ca> and <https://staging.islab.ca>, each corresponding to `main` (production) and `staging` branch respectively.
+### Utilities
 
-Once new commits are pushed to any of these branches, Vercel will automatically trigger build and deploy to the said URLs.
+This Turborepo has some additional tools already setup for you:
 
-## How to edit content
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
 
-Most site contents are editable through the Sanity CMS Studio, which is accessible at <https://islab.ca/studio> or in local development environment, <http://localhost:3000/studio>.
+### Build
 
-### Documents (native concept)
+To build all apps and packages, run the following command:
 
-Any content stored in Sanity CMS database are called documents. A document can fluidly take any shape or form depending on how it is defined in the `schemaType`.
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
 
-A document must have a `slug` which is used for querying from the dabatase. Think of it as a unique ID.
+```sh
+cd my-turborepo
+turbo build
+```
 
-### Categories
+Without global `turbo`, use your package manager:
 
-Categories are rendered in the application sidebar, acting as the entrypoint to the posts.
+```sh
+cd my-turborepo
+npx turbo build
+pnpm dlx turbo build
+pnpm exec turbo build
+```
 
-### Posts
+You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
 
-A post is the content unit on the site. These are rendered at `/categories/post-slug/subpost-slug`.
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
 
-A post may have children posts, called `subposts`, that are rendered at `/categories/post-slug/subpost-slug`
+```sh
+turbo build --filter=docs
+```
 
-### Authors
+Without global `turbo`:
 
-Authors are rendered on the `/categories/people` page.
+```sh
+npx turbo build --filter=docs
+pnpm exec turbo build --filter=docs
+pnpm exec turbo build --filter=docs
+```
 
-A post may or may not have an `author` referenced.
+### Develop
+
+To develop all apps and packages, run the following command:
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+
+```sh
+cd my-turborepo
+turbo dev
+```
+
+Without global `turbo`, use your package manager:
+
+```sh
+cd my-turborepo
+npx turbo dev
+pnpm exec turbo dev
+pnpm exec turbo dev
+```
+
+You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+
+```sh
+turbo dev --filter=web
+```
+
+Without global `turbo`:
+
+```sh
+npx turbo dev --filter=web
+pnpm exec turbo dev --filter=web
+pnpm exec turbo dev --filter=web
+```
+
+### Remote Caching
+
+> [!TIP]
+> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+
+Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+
+By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+
+```sh
+cd my-turborepo
+turbo login
+```
+
+Without global `turbo`, use your package manager:
+
+```sh
+cd my-turborepo
+npx turbo login
+pnpm exec turbo login
+pnpm exec turbo login
+```
+
+This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+
+Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+
+```sh
+turbo link
+```
+
+Without global `turbo`:
+
+```sh
+npx turbo link
+pnpm exec turbo link
+pnpm exec turbo link
+```
+
+## Useful Links
+
+Learn more about the power of Turborepo:
+
+- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
+- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
+- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
+- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
+- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
+- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
